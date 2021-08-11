@@ -1,0 +1,6 @@
+data/*
+!data/.gitkeep
+batch/env_data_getter.log.*
+batch/env_data_getter.log
+env/
+web/envwebview.log
