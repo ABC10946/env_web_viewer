@@ -1,7 +1,12 @@
-
 function drawEnvData() {
     csvData = ''
     fetch('/environdata')
+    .then(response => response.json())
+    .then(graphDraw)
+}
+
+function drawEnvSelectedDate(date) {
+    fetch('/environdata/' + date)
     .then(response => response.json())
     .then(graphDraw)
 }
@@ -77,8 +82,15 @@ function graphDraw(envData) {
 }
 
 
+
+
 window.onload = function() {
     drawEnvData()
+    const splitDate = document.getElementById('splitDate')
+    splitDate.addEventListener('change', function() {
+        drawEnvSelectedDate(splitDate.value)
+    })
+    
 }
 
 window.onresize = function() {
