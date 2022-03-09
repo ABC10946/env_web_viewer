@@ -15,12 +15,12 @@ while True:
         press = rec_json['press']
         humid = rec_json['humid']
         with open(csv_file_path, 'a') as f:
-            f.write(str(timestamp) + ',' + str(temp) + ',' + str(press) + ',' + str(humid) + '\n')
-        
+            f.write(str(timestamp) + ',' + str(temp) + ',' +
+                    str(press) + ',' + str(humid) + '\n')
+
         print("Process complete")
         time.sleep(600)
 
     else:
         print("Response is not json Error")
         time.sleep(5)
-

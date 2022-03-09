@@ -1,14 +1,14 @@
 function drawEnvData() {
     csvData = ''
     fetch('/environdata')
-    .then(response => response.json())
-    .then(graphDraw)
+        .then(response => response.json())
+        .then(graphDraw)
 }
 
 function drawEnvSelectedDate(date) {
     fetch('/environdata/' + date)
-    .then(response => response.json())
-    .then(graphDraw)
+        .then(response => response.json())
+        .then(graphDraw)
 }
 
 function graphDraw(envData) {
@@ -17,7 +17,7 @@ function graphDraw(envData) {
     presses = ['pressure']
     humids = ['humidity']
 
-    for(let idx in envData) {
+    for (let idx in envData) {
         timestamps.push(envData[idx]['timestamp'])
         temps.push(parseFloat(envData[idx]['temp']))
         presses.push(parseFloat(envData[idx]['press']))
@@ -26,9 +26,9 @@ function graphDraw(envData) {
 
     let chart = c3.generate({
         bindto: '#chart',
-        size: {width: window.width, height: 600},
+        size: { width: window.width, height: 600 },
         data: {
-            x: 'timestamp', 
+            x: 'timestamp',
             xFormat: '%Y-%m-%d-%H-%M-%S',
             columns: [
                 timestamps,
@@ -38,16 +38,16 @@ function graphDraw(envData) {
             ],
             axes: {
                 'temperature': 'y',
-                'humidity': 'y', 
+                'humidity': 'y',
                 'pressure': 'y2',
-            }, 
+            },
             colors: {
                 'temperature': '#ff0000',
                 'humidity': '#0000ff',
                 'pressure': '#00ff00'
-            }, 
+            },
         },
-        axis:{
+        axis: {
             x: {
                 type: 'timeseries',
                 localtime: true,
@@ -56,7 +56,7 @@ function graphDraw(envData) {
                 },
                 label: {
                     text: '記録時間',
-                    position: 'outer-center' 
+                    position: 'outer-center'
 
                 }
             },
@@ -73,7 +73,7 @@ function graphDraw(envData) {
                 },
                 show: true
             }
-        }, 
+        },
         subchart: {
             show: true
         }
@@ -84,15 +84,15 @@ function graphDraw(envData) {
 
 
 
-window.onload = function() {
+window.onload = function () {
     drawEnvData()
     const splitDate = document.getElementById('splitDate')
-    splitDate.addEventListener('change', function() {
+    splitDate.addEventListener('change', function () {
         drawEnvSelectedDate(splitDate.value)
     })
-    
+
 }
 
-window.onresize = function() {
+window.onresize = function () {
     drawEnvData()
 }
