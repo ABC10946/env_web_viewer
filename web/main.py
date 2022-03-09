@@ -20,7 +20,7 @@ def environdata(dateStr=None):
         dateNow = datetime.now()
         splitDate = datetime(dateNow.year, dateNow.month, dateNow.day, 0, 0, 0)
 
-        if dateStr != None:
+        if dateStr is not None:
             splitDate = datetime.strptime(dateStr, "%Y-%m-%d")
 
         splitDateEnd = datetime(

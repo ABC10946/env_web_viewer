@@ -1,7 +1,5 @@
 import time
 import requests
-import pandas as pd
-from pandas.io.json import json_normalize
 
 url = 'http://192.168.3.51:5000'
 csv_file_path = '../data/environ.csv'
